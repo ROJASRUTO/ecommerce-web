@@ -1,0 +1,499 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Shopping Bag | ROJAA Boutique</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fffaf7;
+      color: #3d3030;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #f8e5e5;
+      padding: 20px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 26px;
+      font-weight: bold;
+      color: #8d4f5c;
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #49383b;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      font-family: Georgia, serif;
+      color: #8d4f5c;
+      margin-bottom: 25px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 25px;
+      align-items: start;
+    }
+
+    .items, .summary {
+      background: white;
+      padding: 22px;
+      border: 1px solid #f0dede;
+      border-radius: 12px;
+    }
+
+    .bag-item {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 18px;
+      padding: 18px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .bag-item:first-child {
+      padding-top: 0;
+    }
+
+    .bag-item:last-child {
+      border-bottom: none;
+    }
+
+    .bag-item img {
+      width: 100px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+      background: #f8eeee;
+    }
+
+    .item-name {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .price {
+      color: #9a5264;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .item-subtotal {
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .quantity {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 10px 0;
+    }
+
+    .quantity button {
+      width: 32px;
+      height: 32px;
+      border: 1px solid #d7aaaa;
+      background: #fff5f5;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .remove {
+      border: 1px solid #c77a87;
+      background: white;
+      color: #a33d4d;
+      border-radius: 5px;
+      padding: 6px 12px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .remove:hover {
+      background: #fff0f0;
+    }
+
+    .summary h2 {
+      font-family: Georgia, serif;
+      margin-bottom: 20px;
+      color: #8d4f5c;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin: 12px 0;
+    }
+
+    .total {
+      border-top: 1px solid #eadada;
+      padding-top: 15px;
+      margin-top: 18px;
+      font-size: 19px;
+      font-weight: bold;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+      padding: 14px;
+      border: none;
+      border-radius: 7px;
+      background: #a45f70;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #87495a;
+    }
+
+    .continue {
+      display: inline-block;
+      margin-top: 22px;
+      color: #8d4f5c;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 35px 10px;
+    }
+
+    .empty p {
+      margin: 12px 0;
+    }
+
+    .notice {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #716363;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      margin-top: 35px;
+      background: #f8e5e5;
+      color: #654b50;
+    }
+
+    @media (max-width: 700px) {
+      header {
+        padding: 18px 5%;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        margin: 25px auto;
+        padding: 0 14px;
+      }
+
+      .items, .summary {
+        padding: 16px;
+      }
+
+      .bag-item {
+        grid-template-columns: 85px 1fr;
+        gap: 12px;
+      }
+
+      .bag-item img {
+        width: 85px;
+        height: 110px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a class="logo" href="products.html">ROJAA Boutique</a>
+
+    <nav>
+      <a href="products.html">Home</a>
+      <a href="products.html#shop">Shop</a>
+      <a href="cart.html">My Bag (<span id="bagCount">0</span>)</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>My Shopping Bag</h1>
+
+    <div class="layout">
+      <section class="items">
+        <div id="bagItems"></div>
+      </section>
+
+      <aside class="summary">
+        <h2>Order Summary</h2>
+
+        <div class="summary-row">
+          <span>Number of items</span>
+          <span id="summaryCount">0</span>
+        </div>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="subtotal">KSh 0.00</span>
+        </div>
+
+        <div class="summary-row">
+          <span>Delivery</span>
+          <span>Calculated later</span>
+        </div>
+
+        <div class="summary-row total">
+          <span>Total</span>
+          <span id="total">KSh 0.00</span>
+        </div>
+
+        <button class="btn" onclick="checkout()">
+          Proceed to Pay with M-Pesa
+        </button>
+
+        <p class="notice">
+          M-Pesa payment is not connected yet. A secure payment
+          integration is required to accept real payments.
+        </p>
+
+        <a class="continue" href="products.html#shop">
+          ← Continue Shopping
+        </a>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> ROJAA Boutique. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const BAG_KEY = "blushBoutiqueBag";
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    function getBag() {
+      try {
+        const bag = JSON.parse(localStorage.getItem(BAG_KEY));
+        return Array.isArray(bag) ? bag : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function saveBag(bag) {
+      localStorage.setItem(BAG_KEY, JSON.stringify(bag));
+    }
+
+    function formatMoney(amount) {
+      return "KSh " + Number(amount).toLocaleString("en-KE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, function(character) {
+        const entities = {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        };
+        return entities[character];
+      });
+    }
+
+    function renderBag() {
+      const bag = getBag();
+      const bagItems = document.getElementById("bagItems");
+
+      let totalQuantity = 0;
+      let totalAmount = 0;
+
+      if (bag.length === 0) {
+        bagItems.innerHTML = `
+          <div class="empty">
+            <h2>Your shopping bag is empty</h2>
+            <p>You have not added any products yet.</p>
+            <a class="btn" href="products.html#shop">Shop Now</a>
+          </div>
+        `;
+
+        document.getElementById("bagCount").textContent = "0";
+        document.getElementById("summaryCount").textContent = "0";
+        document.getElementById("subtotal").textContent = formatMoney(0);
+        document.getElementById("total").textContent = formatMoney(0);
+        return;
+      }
+
+      bagItems.innerHTML = bag.map((item, index) => {
+        const price = Number(item.price) || 0;
+        const quantity = Math.max(1, Number(item.quantity) || 1);
+        const itemTotal = price * quantity;
+
+        totalQuantity += quantity;
+        totalAmount += itemTotal;
+
+        return `
+          <div class="bag-item">
+            <img
+              src="${escapeHTML(item.image || "")}"
+              alt="${escapeHTML(item.name || "Product")}"
+              onerror="this.style.display='none'"
+            >
+
+            <div>
+              <div class="item-name">
+                ${escapeHTML(item.name || "Product")}
+              </div>
+
+              <div class="price">
+                Unit price: ${formatMoney(price)}
+              </div>
+
+              <div class="quantity">
+                <button
+                  type="button"
+                  onclick="changeQuantity(${index}, -1)"
+                  aria-label="Decrease quantity"
+                >−</button>
+
+                <span>Quantity: ${quantity}</span>
+
+                <button
+                  type="button"
+                  onclick="changeQuantity(${index}, 1)"
+                  aria-label="Increase quantity"
+                >+</button>
+              </div>
+
+              <div class="item-subtotal">
+                Item subtotal: ${formatMoney(itemTotal)}
+              </div>
+
+              <button
+                type="button"
+                class="remove"
+                onclick="removeItem(${index})"
+              >
+                Remove item
+              </button>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      document.getElementById("bagCount").textContent = totalQuantity;
+      document.getElementById("summaryCount").textContent = totalQuantity;
+      document.getElementById("subtotal").textContent =
+        formatMoney(totalAmount);
+      document.getElementById("total").textContent =
+        formatMoney(totalAmount);
+    }
+
+    function changeQuantity(index, change) {
+      const bag = getBag();
+
+      if (!bag[index]) return;
+
+      const currentQuantity = Math.max(
+        1, Number(bag[index].quantity) || 1
+      );
+
+      const newQuantity = currentQuantity + change;
+
+      if (newQuantity <= 0) {
+        bag.splice(index, 1);
+      } else {
+        bag[index].quantity = newQuantity;
+      }
+
+      saveBag(bag);
+      renderBag();
+    }
+
+    function removeItem(index) {
+      const bag = getBag();
+
+      if (!bag[index]) return;
+
+      bag.splice(index, 1);
+      saveBag(bag);
+      renderBag();
+    }
+
+    function checkout() {
+      const bag = getBag();
+
+      if (bag.length === 0) {
+        alert("Your shopping bag is empty. Please add an item first.");
+        return;
+      }
+
+      const total = bag.reduce(function(sum, item) {
+        return sum +
+          (Number(item.price) || 0) *
+          Math.max(1, Number(item.quantity) || 1);
+      }, 0);
+
+      alert(
+        "Your order total is " + formatMoney(total) +
+        ". Actual M-Pesa payment is not connected yet."
+      );
+    }
+
+    renderBag();
+  </script>
+
+</body>
+</html>

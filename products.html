@@ -1,0 +1,672 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover stylish skirts and elegant fashion at affordable prices.">
+  <title>ROJAA Boutique | Fashion & Style</title>
+
+  <style>
+    :root {
+      --pink: #c65378;
+      --pink-dark: #a83c60;
+      --pink-light: #f9e8ed;
+      --cream: #fffaf7;
+      --dark: #292326;
+      --muted: #766c70;
+      --white: #ffffff;
+      --border: #f0e4e7;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+
+    .announcement {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 9px 12px;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    header {
+      background: rgba(255,250,247,.97);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar {
+      max-width: 1200px;
+      min-height: 78px;
+      margin: auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .logo {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 28px;
+      font-weight: bold;
+      color: var(--pink-dark);
+      white-space: nowrap;
+    }
+
+    .logo span { color: var(--dark); }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+    }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 600;
+      transition: color .2s;
+    }
+
+    nav a:hover { color: var(--pink); }
+
+    .cart-link {
+      background: var(--pink-light);
+      color: var(--pink-dark);
+      padding: 10px 15px;
+      border-radius: 25px;
+      white-space: nowrap;
+    }
+
+    .hero {
+      max-width: 1200px;
+      min-height: 440px;
+      margin: 28px auto 0;
+      padding: 65px 7%;
+      border-radius: 18px;
+      background:
+        linear-gradient(90deg, rgba(255,245,246,.98) 0%,
+        rgba(255,245,246,.88) 48%, rgba(255,245,246,.12) 100%),
+        url("images/Skarter%20skirt.jpg") center 42% / cover no-repeat;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-content { max-width: 510px; }
+
+    .eyebrow {
+      color: var(--pink-dark);
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(38px, 5vw, 62px);
+      line-height: 1.12;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 28px;
+      max-width: 410px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--pink);
+      color: white;
+      border: 0;
+      padding: 13px 24px;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: bold;
+      transition: background .2s, transform .2s;
+    }
+
+    .btn:hover {
+      background: var(--pink-dark);
+      transform: translateY(-2px);
+    }
+
+    .benefits {
+      max-width: 1200px;
+      margin: auto;
+      padding: 28px 24px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .benefit strong { display: block; font-size: 14px; margin-bottom: 3px; }
+    .benefit span { color: var(--muted); font-size: 12px; }
+
+    .section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 70px 24px;
+    }
+
+    .section-heading { text-align: center; margin-bottom: 35px; }
+
+    .section-heading h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(30px, 4vw, 40px);
+      margin-bottom: 8px;
+    }
+
+    .section-heading p { color: var(--muted); font-size: 14px; }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .product {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(65,35,45,.09);
+    }
+
+    .product-image {
+      position: relative;
+      background: #f8f0f1;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s;
+    }
+
+    .product:hover .product-image img { transform: scale(1.04); }
+
+    .tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: white;
+      color: var(--pink-dark);
+      padding: 5px 9px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      z-index: 1;
+    }
+
+    .product-info { padding: 17px; }
+    .product-info h3 { font-size: 15px; margin-bottom: 5px; }
+
+    .product-description {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .price {
+      color: var(--pink-dark);
+      font-size: 17px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .add-cart {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid var(--pink);
+      border-radius: 4px;
+      color: var(--pink-dark);
+      background: white;
+      font-size: 12px;
+      font-weight: bold;
+      transition: all .2s;
+    }
+
+    .add-cart:hover { background: var(--pink); color: white; }
+
+    .categories { background: var(--pink-light); }
+
+    .category-list {
+      max-width: 1000px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .category-card {
+      background: white;
+      text-align: center;
+      padding: 30px 18px;
+      border-radius: 10px;
+      border: 1px solid rgba(198,83,120,.12);
+    }
+
+    .category-card .symbol { font-size: 30px; margin-bottom: 10px; }
+
+    .category-card h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      margin-bottom: 7px;
+    }
+
+    .category-card p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .text-link { color: var(--pink-dark); font-size: 13px; font-weight: bold; }
+
+    .promotion {
+      max-width: 1152px;
+      margin: 65px auto;
+      padding: 50px 24px;
+      background: var(--dark);
+      color: white;
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .promotion h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(28px, 4vw, 38px);
+      margin-bottom: 10px;
+    }
+
+    .promotion p { color: #e5dce0; margin-bottom: 24px; font-size: 14px; }
+    .about { text-align: center; max-width: 720px; margin: auto; }
+    .about p { color: var(--muted); font-size: 14px; }
+
+    footer {
+      background: #211c1f;
+      color: white;
+      padding: 42px 24px 20px;
+    }
+
+    .footer-content {
+      max-width: 1152px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 25px;
+      flex-wrap: wrap;
+      padding-bottom: 28px;
+    }
+
+    .footer-content h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .footer-content p, .footer-content a { color: #d2c7cc; font-size: 13px; }
+
+    .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+
+    .copyright {
+      border-top: 1px solid #40373c;
+      padding-top: 18px;
+      text-align: center;
+      color: #bcb0b6;
+      font-size: 12px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      z-index: 200;
+      background: var(--dark);
+      color: white;
+      padding: 14px 20px;
+      border-radius: 7px;
+      box-shadow: 0 8px 25px rgba(0,0,0,.2);
+      display: none;
+      max-width: calc(100% - 44px);
+      font-size: 14px;
+    }
+
+    .toast.show { display: block; }
+
+    @media (max-width: 900px) {
+      .products { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+      .hero { margin: 16px 16px 0; min-height: 390px; }
+      .promotion { margin: 35px 16px; }
+    }
+
+    @media (max-width: 600px) {
+      .navbar { padding: 13px 16px; flex-wrap: wrap; gap: 12px; }
+      .logo { font-size: 24px; }
+      nav { width: 100%; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+      nav a { font-size: 12px; }
+      .cart-link { padding: 7px 10px; }
+      .hero { min-height: 380px; padding: 38px 24px; background-position: 60% center; }
+      .hero h1 { font-size: 39px; }
+      .hero p { font-size: 14px; }
+      .benefits { grid-template-columns: 1fr; gap: 18px; }
+      .section { padding: 48px 15px; }
+      .products { gap: 12px; }
+      .product-info { padding: 12px; }
+      .product-info h3 { font-size: 13px; }
+      .price { font-size: 15px; }
+      .product-description { font-size: 11px; }
+      .add-cart { font-size: 11px; padding: 10px 5px; }
+      .category-list { grid-template-columns: 1fr; }
+      .promotion { padding: 38px 20px; }
+      .footer-content { flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="announcement">
+    YOUR STYLE, YOUR CONFIDENCE — FIND YOUR PERFECT LOOK
+  </div>
+
+  <header>
+    <div class="navbar">
+      <a href="#home" class="logo">ROJAA <span>Boutique.</span></a>
+      <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#categories">Categories</a>
+        <a href="#about">About</a>
+        <a href="cart.html" class="cart-link">
+          Bag (<span id="cart-count">0</span>)
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="eyebrow">Everyday elegance</div>
+        <h1>Style that makes you feel beautiful.</h1>
+        <p>Discover beautiful skirts and timeless fashion pieces selected to help you express your unique style.</p>
+        <a href="#shop" class="btn">Explore the Collection &rarr;</a>
+      </div>
+    </section>
+
+    <section class="benefits" aria-label="Shopping benefits">
+      <div class="benefit">
+        <strong>♡ Carefully Selected Styles</strong>
+        <span>Fashion for your everyday moments</span>
+      </div>
+      <div class="benefit">
+        <strong>✧ Style Made Simple</strong>
+        <span>Find pieces that suit your look</span>
+      </div>
+      <div class="benefit">
+        <strong>✓ Friendly Customer Support</strong>
+        <span>We're here to help with your order</span>
+      </div>
+    </section>
+
+    <section class="section" id="shop">
+      <div class="section-heading">
+        <div class="eyebrow">Made for your wardrobe</div>
+        <h2>Our Favourite Pieces</h2>
+        <p>Explore the collection and discover your next favourite look.</p>
+      </div>
+
+      <div class="products">
+        <article class="product">
+          <div class="product-image">
+            <span class="tag">Favourite</span>
+            <img src="images/long%20flair.jpg" alt="Long Flare Skirt" loading="lazy">
+          </div>
+          <div class="product-info">
+            <h3>Long Flare Skirt</h3>
+            <p class="product-description">Elegant, flowing and easy to style.</p>
+            <div class="price">KSh 3,890.00</div>
+            <button class="add-cart" data-name="Long Flare Skirt" data-price="3890" data-image="images/long%20flair.jpg">Add to Bag +</button>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-image">
+            <img src="images/high%20waist%20skirt.jpg" alt="High Waist Skirt" loading="lazy">
+          </div>
+          <div class="product-info">
+            <h3>High Waist Skirt</h3>
+            <p class="product-description">A flattering style for everyday wear.</p>
+            <div class="price">KSh 1,494.00</div>
+            <button class="add-cart" data-name="High Waist Skirt" data-price="1494" data-image="images/high%20waist%20skirt.jpg">Add to Bag +</button>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-image">
+            <span class="tag">Chic style</span>
+            <img src="images/Skarter%20skirt.jpg" alt="Skarter Skirt" loading="lazy">
+          </div>
+          <div class="product-info">
+            <h3>Skarter Skirt</h3>
+            <p class="product-description">A stylish piece for a confident look.</p>
+            <div class="price">KSh 1,200.00</div>
+            <button class="add-cart" data-name="Skarter Skirt" data-price="1200" data-image="images/Skarter%20skirt.jpg">Add to Bag +</button>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-image">
+            <img src="images/Plaid%20skirt.jpg" alt="Plaid Skirt" loading="lazy">
+          </div>
+          <div class="product-info">
+            <h3>Plaid Skirt</h3>
+            <p class="product-description">A classic pattern with a modern feel.</p>
+            <div class="price">KSh 2,450.00</div>
+            <button class="add-cart" data-name="Plaid Skirt" data-price="2450" data-image="images/Plaid%20skirt.jpg">Add to Bag +</button>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-image">
+            <img src="images/Pleated%20skirt.jpeg" alt="Pleated Skirt" loading="lazy">
+          </div>
+          <div class="product-info">
+            <h3>Pleated Skirt</h3>
+            <p class="product-description">A graceful design for versatile outfits.</p>
+            <div class="price">KSh 2,300.00</div>
+            <button class="add-cart" data-name="Pleated Skirt" data-price="2300" data-image="images/Pleated%20skirt.jpeg">Add to Bag +</button>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-image">
+            <img src="images/long%20kitenge.jpg" alt="Long Kitenge Skirt" loading="lazy">
+          </div>
+          <div class="product-info">
+            <h3>Long Kitenge</h3>
+            <p class="product-description">Celebrate beautiful African-inspired style.</p>
+            <div class="price">KSh 3,245.05</div>
+            <button class="add-cart" data-name="Long Kitenge" data-price="3245.05" data-image="images/long%20kitenge.jpg">Add to Bag +</button>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-image">
+            <img src="images/Plaid%20skirt.jpg" alt="Classic Plaid Skirt" loading="lazy">
+          </div>
+          <div class="product-info">
+            <h3>Classic Plaid Skirt</h3>
+            <p class="product-description">An easy-to-match wardrobe staple.</p>
+            <div class="price">KSh 2,590.00</div>
+            <button class="add-cart" data-name="Classic Plaid Skirt" data-price="2590" data-image="images/Plaid%20skirt.jpg">Add to Bag +</button>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-image">
+            <img src="images/Dennim%20skirt.jpg" alt="Denim Skirt" loading="lazy">
+          </div>
+          <div class="product-info">
+            <h3>Denim Skirt</h3>
+            <p class="product-description">Casual, versatile and easy to pair.</p>
+            <div class="price">KSh 2,345.90</div>
+            <button class="add-cart" data-name="Denim Skirt" data-price="2345.90" data-image="images/Dennim%20skirt.jpg">Add to Bag +</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="categories" id="categories">
+      <div class="section">
+        <div class="section-heading">
+          <div class="eyebrow">Find your look</div>
+          <h2>Shop by Style</h2>
+          <p>Explore styles for different moods and occasions.</p>
+        </div>
+        <div class="category-list">
+          <div class="category-card">
+            <div class="symbol">✿</div>
+            <h3>Elegant Looks</h3>
+            <p>Flowing skirts and timeless designs.</p>
+            <a href="#shop" class="text-link">Explore collection →</a>
+          </div>
+          <div class="category-card">
+            <div class="symbol">♡</div>
+            <h3>Everyday Style</h3>
+            <p>Comfortable pieces for everyday confidence.</p>
+            <a href="#shop" class="text-link">Explore collection →</a>
+          </div>
+          <div class="category-card">
+            <div class="symbol">✧</div>
+            <h3>Statement Pieces</h3>
+            <p>Stand out with prints and unique styles.</p>
+            <a href="#shop" class="text-link">Explore collection →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="promotion">
+      <div class="eyebrow">A little something for you</div>
+      <h2>Your next favourite outfit awaits.</h2>
+      <p>Browse our collection and find a style you'll love wearing.</p>
+      <a href="#shop" class="btn">Shop the Collection</a>
+    </section>
+
+    <section class="section" id="about">
+      <div class="about">
+        <div class="eyebrow">Welcome to ROJAA Boutique</div>
+        <h2 style="font-family:Georgia,serif;font-size:34px;margin-bottom:16px;">
+          Fashion with a personal touch.
+        </h2>
+        <p>We believe style should feel personal, beautiful and effortless. Explore our collection of skirts and find pieces that express who you are. We're happy to help you find your next look.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div>
+        <h3>ROJAA Boutique.</h3>
+        <p>Your style. Your confidence. Your story.</p>
+      </div>
+      <div>
+        <strong>Explore</strong>
+        <div class="footer-links" style="margin-top:10px;">
+          <a href="#home">Home</a>
+          <a href="#shop">Shop</a>
+          <a href="#categories">Categories</a>
+          <a href="#about">About Us</a>
+          <a href="cart.html">My Shopping Bag</a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; <span id="year"></span> ROJAA Boutique. All rights reserved.
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const BAG_KEY = "blushBoutiqueBag";
+    let toastTimer;
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function getBag() {
+      try {
+        return JSON.parse(localStorage.getItem(BAG_KEY)) || [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function updateBagCount() {
+      const count = getBag().reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById("cart-count").textContent = count;
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 2500);
+    }
+
+    document.querySelectorAll(".add-cart").forEach(button => {
+      button.addEventListener("click", () => {
+        const name = button.dataset.name;
+        const price = Number(button.dataset.price);
+        const image = button.dataset.image;
+        const bag = getBag();
+
+        const existingItem = bag.find(item => item.name === name);
+
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          bag.push({ name, price, image, quantity: 1 });
+        }
+
+        localStorage.setItem(BAG_KEY, JSON.stringify(bag));
+        updateBagCount();
+        showToast(name + " added to your bag!");
+      });
+    });
+
+    updateBagCount();
+  </script>
+</body>
+</html>
